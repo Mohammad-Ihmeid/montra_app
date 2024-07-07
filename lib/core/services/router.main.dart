@@ -5,14 +5,33 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/':
       return _pageBuilder(
         (_) => BlocProvider(
-          create: (context) => sl<OnBoardingCubit>(),
+          create: (_) => sl<OnBoardingCubit>(),
           child: const SplashScreen(),
         ),
         settings: settings,
       );
     case OnBoardingScreen.routeName:
       return _pageBuilder(
-        (_) => const OnBoardingScreen(),
+        (_) => BlocProvider(
+          create: (_) => sl<OnBoardingCubit>(),
+          child: const OnBoardingScreen(),
+        ),
+        settings: settings,
+      );
+    case SignUpScreen.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: const SignUpScreen(),
+        ),
+        settings: settings,
+      );
+    case SignInScreen.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: const SignInScreen(),
+        ),
         settings: settings,
       );
     default:

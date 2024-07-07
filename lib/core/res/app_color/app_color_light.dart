@@ -11,9 +11,12 @@ class AppColorsLight {
 
   /// #0D0E0F
   static const darkColor = Color(0xFF0D0E0F);
+  static const dark50Color = Color(0xFF212325);
 
   /// #FFFFFF
   static const lightColor = Color(0xFFFFFFFF);
+  static const light80Color = Color(0xFFFCFCFC);
+  static const light20Color = Color(0xFF91919F);
 
   /// #FD3C4A
   static const Color redColor = Color(0xFFFD3C4A);
@@ -26,4 +29,7 @@ class AppColorsLight {
 
   /// #0077FF
   static const Color blueColor = Color(0xFF0077FF);
+
+  /// #EEE5FF
+  static const Color indicatorColor = Color(0xFFEEE5FF);
 }
