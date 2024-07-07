@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/theme_data/theme_data_light.dart';
+import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/core/services/router.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const MyApp());
 }
 
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Montra',
+      onGenerateTitle: (context) => context.langauage.appName,
       debugShowCheckedModeBanner: false,
       locale: const Locale('en'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,

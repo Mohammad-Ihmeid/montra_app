@@ -1,3 +1,25 @@
 {
-    "@@locale": "ar"
+    "@@locale": "ar",
+
+    "appName": "مونترا",
+
+    "onBoardingTitle": "{title, select, first{احصل على السيطرة الكاملة على أموالك} second{اعرف أين تذهب أموالك} third{التخطيط المسبق} other{}}",
+    "@onBoardingTitle": {
+    "description": "A title message",
+    "placeholders": {
+        "title": {
+        "type": "String"
+        }
+    }
+    },
+
+    "onBoardingDesc": "{desc, select, first{كن مدير أموالك الخاص واجعل كل قرش له قيمة} second{تتبع معاملاتك بسهولة، مع التصنيفات والتقرير المالي} third{قم بإعداد ميزانيتك لكل فئة حتى تكون مسيطرًا} other{}}",
+    "@onBoardingDesc": {
+    "description": "A description message",
+    "placeholders": {
+        "desc": {
+        "type": "String"
+        }
+    }
+    }
 }    

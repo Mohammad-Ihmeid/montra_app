@@ -1,3 +1,26 @@
 {
-    "@@locale": "en"
+    "@@locale": "en",
+
+    "appName": "Montra",
+
+    "onBoardingTitle": "{title, select, first{Gain total control of your money} second{Know where your money goes} third{Planning ahead} other{}}",
+    "@onBoardingTitle": {
+    "description": "A title message",
+    "placeholders": {
+        "title": {
+        "type": "String"
+        }
+    }
+    },
+
+    
+    "onBoardingDesc": "{desc, select, first{Become your own money manager and make every cent count} second{Track your transaction easily, with categories and financial report} third{Setup your budget for each category so you in control} other{}}",
+    "@onBoardingDesc": {
+    "description": "A description message",
+    "placeholders": {
+        "desc": {
+        "type": "String"
+        }
+    }
+    }
 }
