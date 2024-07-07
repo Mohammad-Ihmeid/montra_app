@@ -1,4 +1,4 @@
-package com.example.montra_app
+package dev.montra.app
 
 import io.flutter.embedding.android.FlutterActivity
 
