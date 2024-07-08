@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:montra_app/core/common/widgets/google_button.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
-import 'package:montra_app/src/auth/presentation/views/sign_in_screen.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_up_widgets/privacy_policy_button.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_up_widgets/sign_up_form.dart';
 
@@ -87,10 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => Navigator.pushReplacementNamed(
-                          context,
-                          SignInScreen.routeName,
-                        ),
+                    ..onTap = () => Navigator.pop(context),
                 ),
               ],
             ),

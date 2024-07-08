@@ -6,7 +6,7 @@ import 'package:montra_app/core/utils/core_utils.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 import 'package:montra_app/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:montra_app/src/auth/presentation/views/sign_up_screen.dart';
-import 'package:montra_app/src/auth/presentation/widgets/sign_in_form.dart';
+import 'package:montra_app/src/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -89,10 +89,14 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ),
                         ),
-                    onPressed: () => Navigator.pushReplacementNamed(
-                      context,
-                      SignUpScreen.routeName,
-                    ),
+                    onPressed: () {
+                      emailController.clear();
+                      passwordController.clear();
+                      Navigator.pushNamed(
+                        context,
+                        SignUpScreen.routeName,
+                      );
+                    },
                     child: Text(context.langauage.signUp),
                   ),
                 ],
