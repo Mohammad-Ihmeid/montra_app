@@ -36,5 +36,6 @@
     "termsAndPrivacy" : "Terms of Service and Privacy Policy",
     "orWith" : "Or with",
     "signUpWithGoogle" : "Sign Up with Google",
-    "alreadyHaveAccount" : "Already have an account?"
+    "alreadyHaveAccount" : "Already have an account?",
+    "couldNotLaunch" : "The link cannot be opened"
 }

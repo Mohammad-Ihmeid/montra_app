@@ -36,5 +36,6 @@
     "termsAndPrivacy" : "شروط الخدمة وسياسة الخصوصية",
     "orWith" : "أو من خلال",
     "signUpWithGoogle" : "تسجيل الدخول باستخدام جوجل",
-    "alreadyHaveAccount" : "هل لديك حساب بالفعل؟"
+    "alreadyHaveAccount" : "هل لديك حساب بالفعل؟",
+    "couldNotLaunch" : "لا يمكن فتح الرابط"
 }    
