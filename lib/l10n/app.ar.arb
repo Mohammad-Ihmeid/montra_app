@@ -24,5 +24,17 @@
     },
 
     "login" : "تسجيل الدخول",
-    "signUp" : "أنشاء حساب"
+    "signUp" : "أنشاء حساب",
+
+    "email" : "البريد الألكتروني",
+    "password" : "كلمة السر",
+    "forgotPassword" : "هل نسيت كلمة السر ؟",
+    "dontHaveAccount" : "ليس لديك حساب ؟",
+
+    "name" : "اسم المستخدم",
+    "bySigningUpYouAgree" : "عند التسجيل، فإنك توافق على",
+    "termsAndPrivacy" : "شروط الخدمة وسياسة الخصوصية",
+    "orWith" : "أو من خلال",
+    "signUpWithGoogle" : "تسجيل الدخول باستخدام جوجل",
+    "alreadyHaveAccount" : "هل لديك حساب بالفعل؟"
 }    

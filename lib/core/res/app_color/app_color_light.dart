@@ -16,6 +16,7 @@ class AppColorsLight {
   /// #FFFFFF
   static const lightColor = Color(0xFFFFFFFF);
   static const light80Color = Color(0xFFFCFCFC);
+  static const light60Color = Color(0xFFF1F1FA);
   static const light20Color = Color(0xFF91919F);
 
   /// #FD3C4A

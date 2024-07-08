@@ -24,6 +24,17 @@
     },
 
     "login" : "Login",
-    "signUp" : "Sign Up"
+    "signUp" : "Sign Up",
 
+    "email" : "Email",
+    "password" : "Password",
+    "forgotPassword" : "Forgot Password?",
+    "dontHaveAccount" : "Don't have an account yet?",
+
+    "name" : "Name",
+    "bySigningUpYouAgree" : "By signing up, you agree to the",
+    "termsAndPrivacy" : "Terms of Service and Privacy Policy",
+    "orWith" : "Or with",
+    "signUpWithGoogle" : "Sign Up with Google",
+    "alreadyHaveAccount" : "Already have an account?"
 }
