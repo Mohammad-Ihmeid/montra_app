@@ -1,12 +1,20 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:montra_app/core/common/widgets/show_loading_dialog.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
+import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/core/utils/core_utils.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 import 'package:montra_app/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:montra_app/src/auth/presentation/views/email_verify_screen.dart';
 import 'package:montra_app/src/auth/presentation/views/sign_up_screen.dart';
+import 'package:montra_app/src/auth/presentation/widgets/sign_in_widgets/sign_in_button.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
+import 'package:montra_app/src/home/presentation/views/home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -42,12 +50,29 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
       body: SafeArea(
         child: BlocListener<AuthBloc, AuthState>(
-          listener: (_, state) {
-            if (state is AuthError) {
+          listener: (_, state) async {
+            if (state is AuthLoading) {
+              LoadingDialog.show(context);
+            } else if (state is AuthError) {
+              LoadingDialog.hide(context);
               CoreUtlis.showSnackBar(context, state.message);
             } else if (state is SignedIn) {
+              final navigator = Navigator.of(context);
               context.userProvider.initUser(state.user as LocalUserModel);
-              Navigator.pushReplacementNamed(context, '');
+
+              final user = sl<FirebaseAuth>().currentUser!;
+              await user.reload();
+
+              if (context.mounted) LoadingDialog.hide(context);
+
+              unawaited(
+                user.emailVerified
+                    ? navigator.pushReplacementNamed(HomeScreen.routeName)
+                    : navigator.pushNamed(
+                        EmailVerifyScreen.routeName,
+                        arguments: emailController.text.trim(),
+                      ),
+              );
             }
           },
           child: ListView(
@@ -60,6 +85,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 passwordController: passwordController,
                 formKey: formKey,
               ),
+              SignInButton(
+                emailController: emailController,
+                passwordController: passwordController,
+                formKey: formKey,
+              ),
+              SizedBox(height: context.height * 0.05),
               TextButton(
                 onPressed: () {},
                 child: Text(
@@ -92,7 +123,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     onPressed: () {
                       emailController.clear();
                       passwordController.clear();
-                      Navigator.pushNamed(
+                      Navigator.pushReplacementNamed(
                         context,
                         SignUpScreen.routeName,
                       );

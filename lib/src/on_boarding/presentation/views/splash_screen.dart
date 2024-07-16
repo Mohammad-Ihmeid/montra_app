@@ -8,6 +8,7 @@ import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 import 'package:montra_app/src/auth/presentation/views/sign_in_screen.dart';
+import 'package:montra_app/src/home/presentation/views/home_screen.dart';
 import 'package:montra_app/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:montra_app/src/on_boarding/presentation/views/on_boarding_screen.dart';
 
@@ -22,7 +23,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void _goPage() {
-    if (sl<FirebaseAuth>().currentUser != null) {
+    final user = sl<FirebaseAuth>().currentUser;
+    if (user != null) {
       final user = sl<FirebaseAuth>().currentUser!;
       final localUser = LocalUserModel(
         uid: user.uid,
@@ -30,8 +32,11 @@ class _SplashScreenState extends State<SplashScreen> {
         userName: user.displayName ?? '',
       );
       context.userProvider.initUser(localUser);
-      // TODO(Add Page): Should add home page
-      Navigator.pushReplacementNamed(context, 'home-page');
+
+      Navigator.pushReplacementNamed(
+        context,
+        user.emailVerified ? HomeScreen.routeName : SignInScreen.routeName,
+      );
     } else {
       Navigator.pushReplacementNamed(context, SignInScreen.routeName);
     }

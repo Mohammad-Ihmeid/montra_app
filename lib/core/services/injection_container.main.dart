@@ -15,12 +15,14 @@ Future<void> _initAuth() async {
         signUp: sl(),
         forgotPassword: sl(),
         updateUser: sl(),
+        sendEmailVerification: sl(),
       ),
     )
     ..registerLazySingleton(() => SignIn(sl()))
     ..registerLazySingleton(() => SignUp(sl()))
     ..registerLazySingleton(() => ForgotPassword(sl()))
     ..registerLazySingleton(() => UpdateUser(sl()))
+    ..registerLazySingleton(() => SendEmailVerify(sl()))
     ..registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()))
     ..registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(

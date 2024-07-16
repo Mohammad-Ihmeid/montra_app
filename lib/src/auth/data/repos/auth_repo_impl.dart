@@ -69,4 +69,14 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServerFailure.fromException(e));
     }
   }
+
+  @override
+  ResultFuture<void> sendEmailVerify() async {
+    try {
+      final result = await _authRemoteDataSource.sendEmailVerification();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
+  }
 }

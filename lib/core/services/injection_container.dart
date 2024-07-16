@@ -6,6 +6,7 @@ import 'package:montra_app/src/auth/data/datasources/auth_remote_data_source.dar
 import 'package:montra_app/src/auth/data/repos/auth_repo_impl.dart';
 import 'package:montra_app/src/auth/domain/repos/auth_repo.dart';
 import 'package:montra_app/src/auth/domain/usecases/forgot_password.dart';
+import 'package:montra_app/src/auth/domain/usecases/send_email_verify.dart';
 import 'package:montra_app/src/auth/domain/usecases/sign_in.dart';
 import 'package:montra_app/src/auth/domain/usecases/sign_up.dart';
 import 'package:montra_app/src/auth/domain/usecases/update_user.dart';

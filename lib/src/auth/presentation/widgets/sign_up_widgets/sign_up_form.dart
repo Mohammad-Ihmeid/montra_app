@@ -30,7 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         children: [
           IField(
-            controller: widget.emailController,
+            controller: widget.userNameController,
             hintText: context.langauage.name,
             hintStyle: const TextStyle(
               color: AppColorsLight.light20Color,

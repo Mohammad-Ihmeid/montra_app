@@ -4,7 +4,7 @@ class MediaRes {
   static const _baseIcons = 'assets/icons';
   static const _baseImages = 'assets/images';
   static const _baseLottie = 'assets/lottie';
-  //static const _baseVectors = 'assets/vectors';
+  static const _baseVectors = 'assets/vectors';
 
   //Icons
   static const googleIcon = '$_baseIcons/google_icon.png';
@@ -16,4 +16,7 @@ class MediaRes {
 
   //Lottie
   static const pageUnderConstruction = '$_baseLottie/under_construction.json';
+
+  //Vectores
+  static const emailVerify = '$_baseVectors/email_verify.png';
 }

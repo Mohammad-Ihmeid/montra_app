@@ -18,28 +18,20 @@ class SignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        if (state is AuthLoading) {
-          return const CircularProgressIndicator();
-        } else {
-          return ElevatedButton(
-            onPressed: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-              FirebaseAuth.instance.currentUser?.reload();
-              if (formKey.currentState!.validate()) {
-                context.read<AuthBloc>().add(
-                      SignInEvent(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      ),
-                    );
-              }
-            },
-            child: Text(context.langauage.login),
-          );
+    return ElevatedButton(
+      onPressed: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+        FirebaseAuth.instance.currentUser?.reload();
+        if (formKey.currentState!.validate()) {
+          context.read<AuthBloc>().add(
+                SignInEvent(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
+                ),
+              );
         }
       },
+      child: Text(context.langauage.login),
     );
   }
 }

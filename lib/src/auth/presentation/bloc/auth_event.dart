@@ -57,3 +57,10 @@ class UpdateUserEvent extends AuthEvent {
   @override
   List<Object?> get props => [action, userData];
 }
+
+class SendEmailVerifyEvent extends AuthEvent {
+  const SendEmailVerifyEvent();
+
+  @override
+  List<Object> get props => [];
+}

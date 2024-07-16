@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:montra_app/core/common/widgets/show_loading_dialog.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/res/media_res.dart';
@@ -20,6 +21,12 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final pageController = PageController();
+
+  void onPressed() {
+    LoadingDialog.show(context);
+    context.read<OnBoardingCubit>().cacheFirstTimer();
+    LoadingDialog.hide(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +70,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.read<OnBoardingCubit>().cacheFirstTimer();
+                  onPressed();
                   Navigator.pushReplacementNamed(
                     context,
                     SignUpScreen.routeName,
@@ -77,7 +84,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               SizedBox(height: context.height * 0.03),
               ElevatedButton(
                 onPressed: () {
-                  context.read<OnBoardingCubit>().cacheFirstTimer();
+                  onPressed();
                   Navigator.pushReplacementNamed(
                     context,
                     SignInScreen.routeName,

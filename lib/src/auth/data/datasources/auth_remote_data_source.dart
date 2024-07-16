@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:montra_app/core/enums/update_user.dart';
 import 'package:montra_app/core/errors/exceptions.dart';
 import 'package:montra_app/core/utils/constants.dart';
+import 'package:montra_app/core/utils/datasource_utils.dart';
 import 'package:montra_app/core/utils/typedef.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 
@@ -31,6 +32,10 @@ abstract class AuthRemoteDataSource {
     required UpdateUserAction action,
     dynamic userData,
   });
+
+  Future<void> sendEmailVerification();
+
+  Future<bool> checkEmailVerify();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -193,6 +198,39 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         statusCode: '505',
       );
     }
+  }
+
+  @override
+  Future<void> sendEmailVerification() async {
+    try {
+      await DatasourceUtils.authorizeUser(_authClient);
+
+      await _authClient.currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw ServerException(
+        message: e.message ?? '',
+        statusCode: e.code,
+      );
+    } catch (e, s) {
+      debugPrintStack(stackTrace: s);
+      throw ServerException(
+        message: e.toString(),
+        statusCode: '505',
+      );
+    }
+  }
+
+  @override
+  Future<bool> checkEmailVerify() async {
+    await DatasourceUtils.authorizeUser(_authClient);
+
+    final user = _authClient.currentUser!;
+
+    await user.reload();
+
+    if (user.emailVerified) return true;
+
+    return false;
   }
 
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {

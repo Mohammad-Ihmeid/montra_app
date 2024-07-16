@@ -30,8 +30,18 @@ class CoreUtlis {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => const Center(
-        child: CircularProgressIndicator(),
+      builder: (_) => const PopScope(
+        canPop: false,
+        child: Opacity(
+          opacity: 0.5,
+          child: Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                AppColorsLight.primaryColor,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:montra_app/core/common/widgets/google_button.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
+import 'package:montra_app/src/auth/presentation/views/sign_in_screen.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_up_widgets/privacy_policy_button.dart';
+import 'package:montra_app/src/auth/presentation/widgets/sign_up_widgets/sign_up_button.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_up_widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -33,6 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(agreePrivacyPolicy.value.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -56,9 +59,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           SizedBox(height: context.height * 0.03),
           PrivacyPolicyButton(myBool: agreePrivacyPolicy),
           SizedBox(height: context.height * 0.03),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(context.langauage.signUp),
+          SignUpButton(
+            userNameController: userNameController,
+            emailController: emailController,
+            passwordController: passwordController,
+            formKey: formKey,
+            agreePrivacyPolicy: agreePrivacyPolicy.value,
           ),
           SizedBox(height: context.height * 0.02),
           Text(
@@ -86,7 +92,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => Navigator.pop(context),
+                    ..onTap = () => Navigator.pushReplacementNamed(
+                          context,
+                          SignInScreen.routeName,
+                        ),
                 ),
               ],
             ),
