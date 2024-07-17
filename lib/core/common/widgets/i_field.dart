@@ -50,6 +50,11 @@ class IField extends StatelessWidget {
       textInputAction: textInputAction,
       obscureText: obscureText,
       readOnly: readOnly,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 14,
+        decoration: TextDecoration.none,
+      ),
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),

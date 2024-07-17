@@ -4,6 +4,9 @@
     "appName": "مونترا",
 
     "continues": "استمرار",
+    "yes": "نعم",
+    "no": "لا",
+    
 
     "onBoardingTitle": "{title, select, first{احصل على السيطرة الكاملة على أموالك} second{اعرف أين تذهب أموالك} third{التخطيط المسبق} other{}}",
     "@onBoardingTitle": {
@@ -48,5 +51,12 @@
     "sendVerificationCodeToEmail" : "تم أرسال رمز التحقق الى بريدك الإلكتروني",
     "checkYourInbox" : "الرجاء التحقق من صندوق الوارد الخاص بك وتأكيد بريدك الإلكتروني.",
     "didntReceivedCode" : "لم أتلق الرمز؟ أعد الإرسال",
-    "verify" : "Verify"
+    "verify" : "Verify",
+
+    "userName" : "اسم المستخدم",
+    "account" : "الحساب",
+    "settings" : "الأعدادات",
+    "exportData" : "تصدير البيانات",
+    "logout" : "تسجيل خروج",
+    "youSureLogout" : "هل أنت متأكد أنك تريد تسجيل الخروج؟"
 }    

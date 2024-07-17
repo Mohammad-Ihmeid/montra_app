@@ -14,7 +14,7 @@ import 'package:montra_app/src/auth/presentation/views/email_verify_screen.dart'
 import 'package:montra_app/src/auth/presentation/views/sign_up_screen.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_in_widgets/sign_in_button.dart';
 import 'package:montra_app/src/auth/presentation/widgets/sign_in_widgets/sign_in_form.dart';
-import 'package:montra_app/src/home/presentation/views/home_screen.dart';
+import 'package:montra_app/src/dashboard/presentation/views/dashboard.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -67,7 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
               unawaited(
                 user.emailVerified
-                    ? navigator.pushReplacementNamed(HomeScreen.routeName)
+                    ? navigator.pushReplacementNamed(Dashboard.routeName)
                     : navigator.pushNamed(
                         EmailVerifyScreen.routeName,
                         arguments: emailController.text.trim(),

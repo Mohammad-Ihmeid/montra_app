@@ -8,6 +8,15 @@ class MediaRes {
 
   //Icons
   static const googleIcon = '$_baseIcons/google_icon.png';
+  static const homeIcon = '$_baseIcons/home_icon.png';
+  static const pieChartIcon = '$_baseIcons/pie_chart_icon.png';
+  static const transactionIcon = '$_baseIcons/transaction_icon.png';
+  static const userIcon = '$_baseIcons/user_icon.png';
+  static const editIcon = '$_baseIcons/edit_icon.png';
+  static const settingsIcon = '$_baseIcons/settings_icon.png';
+  static const uploadIcon = '$_baseIcons/upload_icon.png';
+  static const walletIcon = '$_baseIcons/wallet_icon.png';
+  static const logoutIcon = '$_baseIcons/logout_icon.png';
 
   //Images
   static const controlYourMoney = '$_baseImages/control_your_money.png';

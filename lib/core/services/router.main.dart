@@ -39,9 +39,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) => BlocProvider(
           create: (_) => sl<AuthBloc>(),
           child: EmailVerifyScreen(
-            ModalRoute.of(context)!.settings.arguments! as String,
+            settings.arguments! as String,
           ),
         ),
+        settings: settings,
+      );
+    case Dashboard.routeName:
+      return _pageBuilder(
+        (context) => const Dashboard(),
         settings: settings,
       );
     default:

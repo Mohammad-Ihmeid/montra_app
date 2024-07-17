@@ -8,7 +8,7 @@ import 'package:montra_app/core/res/media_res.dart';
 import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/core/utils/core_utils.dart';
 import 'package:montra_app/src/auth/presentation/bloc/auth_bloc.dart';
-import 'package:montra_app/src/home/presentation/views/home_screen.dart';
+import 'package:montra_app/src/dashboard/presentation/views/dashboard.dart';
 import 'package:provider/provider.dart';
 
 class EmailVerifyScreen extends StatefulWidget {
@@ -76,7 +76,10 @@ class _EmailVerifyScreenState extends State<EmailVerifyScreen> {
                 final navigator = Navigator.of(context);
                 if (await onPressedContinue()) {
                   unawaited(
-                    navigator.pushReplacementNamed(HomeScreen.routeName),
+                    navigator.pushNamedAndRemoveUntil(
+                      Dashboard.routeName,
+                      (route) => false,
+                    ),
                   );
                 } else {
                   if (context.mounted) {

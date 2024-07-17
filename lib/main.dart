@@ -7,6 +7,7 @@ import 'package:montra_app/core/res/theme_data/theme_data_light.dart';
 import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/core/services/router.dart';
 import 'package:montra_app/firebase_options.dart';
+import 'package:montra_app/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => DashboardController()),
       ],
       child: MaterialApp(
         onGenerateTitle: (context) => context.langauage.appName,

@@ -4,6 +4,8 @@
     "appName": "Montra",
 
     "continues": "Continue",
+    "yes": "Yes",
+    "no": "No",
 
     "onBoardingTitle": "{title, select, first{Gain total control of your money} second{Know where your money goes} third{Planning ahead} other{}}",
     "@onBoardingTitle": {
@@ -48,6 +50,14 @@
     "sendVerificationCodeToEmail" : "We send verification code to your email",
     "checkYourInbox" : "Please Check Your inbox and verify your email",
     "didntReceivedCode" : "I didn't received the code? Send again",
-    "verify" : "Verify"
+    "verify" : "Verify",
+
+
+    "userName" : "Username",
+    "account" : "Account",
+    "settings" : "Settings",
+    "exportData" : "Export Data",
+    "logout" : "Logout",
+    "youSureLogout" : "Are you sure do you wanna logout?"
     
 }

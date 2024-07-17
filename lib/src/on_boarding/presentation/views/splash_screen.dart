@@ -8,7 +8,7 @@ import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 import 'package:montra_app/src/auth/presentation/views/sign_in_screen.dart';
-import 'package:montra_app/src/home/presentation/views/home_screen.dart';
+import 'package:montra_app/src/dashboard/presentation/views/dashboard.dart';
 import 'package:montra_app/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:montra_app/src/on_boarding/presentation/views/on_boarding_screen.dart';
 
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       Navigator.pushReplacementNamed(
         context,
-        user.emailVerified ? HomeScreen.routeName : SignInScreen.routeName,
+        user.emailVerified ? Dashboard.routeName : SignInScreen.routeName,
       );
     } else {
       Navigator.pushReplacementNamed(context, SignInScreen.routeName);

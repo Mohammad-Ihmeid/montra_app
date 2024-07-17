@@ -79,6 +79,12 @@ TextTheme textTheme() {
       fontSize: 20,
       fontWeight: FontWeight.w500,
     ),
+    /* Body 1 */
+    bodyLarge: TextStyle(
+      color: AppColorsLight.light20Color,
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+    ),
     /* Body 3 */
     bodySmall: TextStyle(
       color: Colors.black,
