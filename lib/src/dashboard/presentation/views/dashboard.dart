@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:montra_app/core/common/app/providers/user_provider.dart';
 import 'package:montra_app/core/common/widgets/icon_bottom_app_bar.dart';
-import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/res/media_res.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 import 'package:montra_app/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:montra_app/src/dashboard/presentation/utils/dashboard_utils.dart';
+import 'package:montra_app/src/dashboard/presentation/widgets/dashboard_overlay.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -47,14 +47,10 @@ class _DashboardState extends State<Dashboard> {
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {},
-                backgroundColor: AppColorsLight.primaryColor,
-                shape: const CircleBorder(),
-                child: const Icon(Icons.add, size: 40),
-              ),
+              floatingActionButton: const DashboardOverlay(),
               bottomNavigationBar: BottomAppBar(
                 shape: const CircularNotchedRectangle(),
+                notchMargin: 10,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +67,7 @@ class _DashboardState extends State<Dashboard> {
                       label: 'Transaction',
                       onTap: () => controller.changeIndex(1),
                     ),
-                    const Icon(Icons.home, color: Colors.white),
+                    const Icon(Icons.home, color: Colors.transparent),
                     IconBottomAppBar(
                       selectedIcon: controller.currentIndex == 2,
                       icon: MediaRes.pieChartIcon,

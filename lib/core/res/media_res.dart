@@ -7,6 +7,7 @@ class MediaRes {
   static const _baseVectors = 'assets/vectors';
 
   //Icons
+  static const addIcon = '$_baseIcons/add_icon.png';
   static const googleIcon = '$_baseIcons/google_icon.png';
   static const homeIcon = '$_baseIcons/home_icon.png';
   static const pieChartIcon = '$_baseIcons/pie_chart_icon.png';
@@ -17,6 +18,9 @@ class MediaRes {
   static const uploadIcon = '$_baseIcons/upload_icon.png';
   static const walletIcon = '$_baseIcons/wallet_icon.png';
   static const logoutIcon = '$_baseIcons/logout_icon.png';
+  static const expenseIcon = '$_baseIcons/expense_icon.png';
+  static const incomeIcon = '$_baseIcons/income_icon.png';
+  static const currencyExchangeIcon = '$_baseIcons/currency_exchange_icon.png';
 
   //Images
   static const controlYourMoney = '$_baseImages/control_your_money.png';
