@@ -49,6 +49,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) => const Dashboard(),
         settings: settings,
       );
+    case ExpenseScreen.routeName:
+      return _pageBuilder(
+        (context) => const ExpenseScreen(),
+        settings: settings,
+      );
+
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),

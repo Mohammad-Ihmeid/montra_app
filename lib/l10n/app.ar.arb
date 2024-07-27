@@ -6,6 +6,8 @@
     "continues": "استمرار",
     "yes": "نعم",
     "no": "لا",
+    "add": "أضافة",
+    "transaction": "الحركة",
     
 
     "onBoardingTitle": "{title, select, first{احصل على السيطرة الكاملة على أموالك} second{اعرف أين تذهب أموالك} third{التخطيط المسبق} other{}}",
@@ -58,5 +60,13 @@
     "settings" : "الأعدادات",
     "exportData" : "تصدير البيانات",
     "logout" : "تسجيل خروج",
-    "youSureLogout" : "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+    "youSureLogout" : "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+
+    "expense" : "مصروف",
+    "howMuch" : "كم ثمن ؟",
+    "category" : "الصنف",
+    "description" : "الوصف",
+    "wallet" : "المحفظة",
+    "attachment" : "مرفق",
+    "repeat" : "تكرر"
 }    

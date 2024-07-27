@@ -13,6 +13,7 @@ class IField extends StatelessWidget {
     this.validator,
     this.fillColor,
     this.suffixIcon,
+    this.prefixIcon,
     this.hintText,
     this.keyboardType,
     this.textInputAction,
@@ -25,6 +26,7 @@ class IField extends StatelessWidget {
   final bool obscureText;
   final bool readOnly;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final String? hintText;
   final TextInputType? keyboardType;
   final bool overrideValidator;
@@ -74,6 +76,7 @@ class IField extends StatelessWidget {
         filled: filled,
         fillColor: fillColor,
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
         hintText: hintText,
         hintStyle: hintStyle ??
             const TextStyle(

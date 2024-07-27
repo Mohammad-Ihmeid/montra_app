@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/res/media_res.dart';
+import 'package:montra_app/src/add_transaction/presentation/views/expense_screen.dart';
 
 class DashboardOverlay extends StatefulWidget {
   const DashboardOverlay({super.key});
@@ -73,17 +75,25 @@ class _DashboardOverlayState extends State<DashboardOverlay>
                         : const Duration(milliseconds: 875),
                     alignment: const Alignment(-0.9, -0.7),
                     curve: toggle ? Curves.easeIn : Curves.elasticOut,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 275),
-                      curve: toggle ? Curves.easeIn : Curves.easeOut,
-                      height: size1,
-                      width: size1,
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        color: AppColorsLight.greenColor,
-                        shape: BoxShape.circle,
+                    child: GestureDetector(
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 275),
+                        curve: toggle ? Curves.easeIn : Curves.easeOut,
+                        height: size1,
+                        width: size1,
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: AppColorsLight.greenColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            MediaRes.incomeIcon,
+                            color: AppColorsLight.light80Color,
+                            width: context.width * 0.08,
+                          ),
+                        ),
                       ),
-                      child: Image.asset(MediaRes.incomeIcon),
                     ),
                   ),
                   AnimatedAlign(
@@ -102,7 +112,13 @@ class _DashboardOverlayState extends State<DashboardOverlay>
                         color: AppColorsLight.blueColor,
                         shape: BoxShape.circle,
                       ),
-                      child: Image.asset(MediaRes.currencyExchangeIcon),
+                      child: Center(
+                        child: Image.asset(
+                          MediaRes.currencyExchangeIcon,
+                          color: AppColorsLight.light80Color,
+                          width: context.width * 0.08,
+                        ),
+                      ),
                     ),
                   ),
                   AnimatedAlign(
@@ -111,17 +127,36 @@ class _DashboardOverlayState extends State<DashboardOverlay>
                         : const Duration(milliseconds: 875),
                     alignment: const Alignment(0.9, -0.7),
                     curve: toggle ? Curves.easeIn : Curves.elasticOut,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 275),
-                      curve: toggle ? Curves.easeIn : Curves.easeOut,
-                      height: size3,
-                      width: size3,
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        color: AppColorsLight.redColor,
-                        shape: BoxShape.circle,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          toggle = !toggle;
+                          _controller.reverse();
+                          removeHighlightOverlay();
+                        });
+                        Navigator.pushNamed(
+                          context,
+                          ExpenseScreen.routeName,
+                        );
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 275),
+                        curve: toggle ? Curves.easeIn : Curves.easeOut,
+                        height: size3,
+                        width: size3,
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: AppColorsLight.redColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            MediaRes.expenseIcon,
+                            color: AppColorsLight.light80Color,
+                            width: context.width * 0.08,
+                          ),
+                        ),
                       ),
-                      child: Image.asset(MediaRes.expenseIcon),
                     ),
                   ),
                 ],
@@ -177,7 +212,6 @@ class _DashboardOverlayState extends State<DashboardOverlay>
                 } else {
                   toggle = !toggle;
                   _controller.reverse();
-                  alignment1 = Alignment.center;
                   removeHighlightOverlay();
                 }
               });

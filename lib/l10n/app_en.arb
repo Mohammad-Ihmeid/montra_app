@@ -6,6 +6,8 @@
     "continues": "Continue",
     "yes": "Yes",
     "no": "No",
+    "add": "Add",
+    "transaction": "transaction",
 
     "onBoardingTitle": "{title, select, first{Gain total control of your money} second{Know where your money goes} third{Planning ahead} other{}}",
     "@onBoardingTitle": {
@@ -58,6 +60,14 @@
     "settings" : "Settings",
     "exportData" : "Export Data",
     "logout" : "Logout",
-    "youSureLogout" : "Are you sure do you wanna logout?"
+    "youSureLogout" : "Are you sure do you wanna logout?",
+
+    "expense" : "Expense",
+    "howMuch" : "How much?",
+    "category" : "Category",
+    "description" : "Description",
+    "wallet" : "Wallet",
+    "attachment" : "attachment",
+    "repeat" : "Repeat"
     
 }
