@@ -54,6 +54,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) => const ExpenseScreen(),
         settings: settings,
       );
+    case IncomeScreen.routeName:
+      return _pageBuilder(
+        (context) => const IncomeScreen(),
+        settings: settings,
+      );
 
     default:
       return _pageBuilder(

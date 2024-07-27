@@ -55,7 +55,6 @@ class _AddTransactionBackgroundState extends State<AddTransactionBackground>
           right: 16,
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

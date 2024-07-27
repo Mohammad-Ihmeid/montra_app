@@ -68,5 +68,7 @@
     "description" : "الوصف",
     "wallet" : "المحفظة",
     "attachment" : "مرفق",
-    "repeat" : "تكرر"
+    "repeat" : "تكرر",
+
+    "income" : "الإيرادات"
 }    

@@ -5,6 +5,7 @@ import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/res/media_res.dart';
 import 'package:montra_app/src/add_transaction/presentation/views/expense_screen.dart';
+import 'package:montra_app/src/add_transaction/presentation/views/income_screen.dart';
 
 class DashboardOverlay extends StatefulWidget {
   const DashboardOverlay({super.key});
@@ -76,6 +77,17 @@ class _DashboardOverlayState extends State<DashboardOverlay>
                     alignment: const Alignment(-0.9, -0.7),
                     curve: toggle ? Curves.easeIn : Curves.elasticOut,
                     child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          toggle = !toggle;
+                          _controller.reverse();
+                          removeHighlightOverlay();
+                        });
+                        Navigator.pushNamed(
+                          context,
+                          IncomeScreen.routeName,
+                        );
+                      },
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 275),
                         curve: toggle ? Curves.easeIn : Curves.easeOut,

@@ -68,6 +68,8 @@
     "description" : "Description",
     "wallet" : "Wallet",
     "attachment" : "attachment",
-    "repeat" : "Repeat"
+    "repeat" : "Repeat",
+
+    "income" : "Income"
     
 }
