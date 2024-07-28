@@ -59,6 +59,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) => const IncomeScreen(),
         settings: settings,
       );
+    case TransferScreen.routeName:
+      return _pageBuilder(
+        (context) => const TransferScreen(),
+        settings: settings,
+      );
 
     default:
       return _pageBuilder(

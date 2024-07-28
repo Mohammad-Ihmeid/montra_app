@@ -8,6 +8,8 @@
     "no": "No",
     "add": "Add",
     "transaction": "transaction",
+    "from" : "From",
+    "to" : "To",
 
     "onBoardingTitle": "{title, select, first{Gain total control of your money} second{Know where your money goes} third{Planning ahead} other{}}",
     "@onBoardingTitle": {
@@ -70,6 +72,8 @@
     "attachment" : "attachment",
     "repeat" : "Repeat",
 
-    "income" : "Income"
+    "income" : "Income",
+
+    "transfer" : "Transfer"
     
 }

@@ -23,6 +23,8 @@ class MediaRes {
   static const currencyExchangeIcon = '$_baseIcons/currency_exchange_icon.png';
   static const dollarSignIcon = '$_baseIcons/dollar_sign_icon.png';
   static const attachmentIcon = '$_baseIcons/attachment_icon.png';
+  static const transactionColoredIcon =
+      '$_baseIcons/transaction_Colored_icon.png';
 
   //Images
   static const controlYourMoney = '$_baseImages/control_your_money.png';

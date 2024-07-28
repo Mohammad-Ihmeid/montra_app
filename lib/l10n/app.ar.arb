@@ -8,6 +8,8 @@
     "no": "لا",
     "add": "أضافة",
     "transaction": "الحركة",
+    "from" : "من",
+    "to" : "الى",
     
 
     "onBoardingTitle": "{title, select, first{احصل على السيطرة الكاملة على أموالك} second{اعرف أين تذهب أموالك} third{التخطيط المسبق} other{}}",
@@ -70,5 +72,7 @@
     "attachment" : "مرفق",
     "repeat" : "تكرر",
 
-    "income" : "الإيرادات"
+    "income" : "الإيرادات",
+
+    "transfer" : "تحويل"
 }    

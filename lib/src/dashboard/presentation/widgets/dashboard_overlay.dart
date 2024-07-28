@@ -6,6 +6,7 @@ import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/res/media_res.dart';
 import 'package:montra_app/src/add_transaction/presentation/views/expense_screen.dart';
 import 'package:montra_app/src/add_transaction/presentation/views/income_screen.dart';
+import 'package:montra_app/src/add_transaction/presentation/views/transfer_screen.dart';
 
 class DashboardOverlay extends StatefulWidget {
   const DashboardOverlay({super.key});
@@ -114,21 +115,34 @@ class _DashboardOverlayState extends State<DashboardOverlay>
                         : const Duration(milliseconds: 875),
                     alignment: const Alignment(0, -1.4),
                     curve: toggle ? Curves.easeIn : Curves.elasticOut,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 275),
-                      curve: toggle ? Curves.easeIn : Curves.easeOut,
-                      height: size2,
-                      width: size2,
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        color: AppColorsLight.blueColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          MediaRes.currencyExchangeIcon,
-                          color: AppColorsLight.light80Color,
-                          width: context.width * 0.08,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          toggle = !toggle;
+                          _controller.reverse();
+                          removeHighlightOverlay();
+                        });
+                        Navigator.pushNamed(
+                          context,
+                          TransferScreen.routeName,
+                        );
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 275),
+                        curve: toggle ? Curves.easeIn : Curves.easeOut,
+                        height: size2,
+                        width: size2,
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: AppColorsLight.blueColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            MediaRes.currencyExchangeIcon,
+                            color: AppColorsLight.light80Color,
+                            width: context.width * 0.08,
+                          ),
                         ),
                       ),
                     ),
