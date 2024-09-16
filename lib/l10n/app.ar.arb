@@ -10,7 +10,10 @@
     "transaction": "الحركة",
     "from" : "من",
     "to" : "الى",
-    
+    "choose" : "أختر",
+    "cancel" : "الغاء",
+    "delete" : "حذف",
+    "edit" : "تعديل",
 
     "onBoardingTitle": "{title, select, first{احصل على السيطرة الكاملة على أموالك} second{اعرف أين تذهب أموالك} third{التخطيط المسبق} other{}}",
     "@onBoardingTitle": {
@@ -74,5 +77,9 @@
 
     "income" : "الإيرادات",
 
-    "transfer" : "تحويل"
+    "transfer" : "تحويل",
+
+    "create_Category" : "أنشاء فئة",
+    "addCaegorySuccess" : "تم أضافة فئة بنجاح",
+    "create" : "أنشاء"
 }    

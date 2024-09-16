@@ -64,7 +64,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) => const TransferScreen(),
         settings: settings,
       );
-
+    case CategoryScreen.routeName:
+      return _pageBuilder(
+        (context) => BlocProvider(
+          create: (_) => sl<CategoryBloc>(),
+          child: CategoryScreen(settings.arguments! as int),
+        ),
+        settings: settings,
+      );
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),

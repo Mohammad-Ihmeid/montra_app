@@ -10,6 +10,10 @@
     "transaction": "transaction",
     "from" : "From",
     "to" : "To",
+    "choose" : "Choose",
+    "cancel" : "Cancel",
+    "delete" : "Delete",
+    "edit" : "Edit",
 
     "onBoardingTitle": "{title, select, first{Gain total control of your money} second{Know where your money goes} third{Planning ahead} other{}}",
     "@onBoardingTitle": {
@@ -74,6 +78,10 @@
 
     "income" : "Income",
 
-    "transfer" : "Transfer"
+    "transfer" : "Transfer",
+
+    "create_Category" : "Create a Category",
+    "addCaegorySuccess" : "Catefory added successfully",
+    "create" : "Create"
     
 }

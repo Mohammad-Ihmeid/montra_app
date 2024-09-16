@@ -3,8 +3,32 @@ part of 'injection_container.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  await _initCategory();
   await _initOnBoarding();
   await _initAuth();
+}
+
+Future<void> _initCategory() async {
+  sl
+    ..registerFactory(
+      () => CategoryBloc(
+        addCategory: sl(),
+        getCategories: sl(),
+        getCategoriesIcon: sl(),
+        deleteCategory: sl(),
+        editCategory: sl(),
+      ),
+    )
+    ..registerLazySingleton(() => AddCategory(sl()))
+    ..registerLazySingleton(() => GetCategories(sl()))
+    ..registerLazySingleton(() => GetCategoriesIcon(sl()))
+    ..registerLazySingleton(() => DeleteCategory(sl()))
+    ..registerLazySingleton(() => EditCategory(sl()))
+    ..registerLazySingleton<CategoryRepo>(() => CategoryRepoImpl(sl()))
+    ..registerLazySingleton<CategoryRemoteDataSource>(
+      () =>
+          CategoryRemoteDataSrcImp(firestore: sl(), storage: sl(), auth: sl()),
+    );
 }
 
 Future<void> _initAuth() async {

@@ -5,6 +5,7 @@ import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/add_transaction_background.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/attachment_button.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/repeat_button.dart';
+import 'package:montra_app/src/category/presentation/views/category_screen.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({super.key});
@@ -43,6 +44,18 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             Icons.keyboard_arrow_down_outlined,
             color: AppColorsLight.light20Color,
             size: context.width * 0.08,
+          ),
+          prefixIcon: IconButton(
+            onPressed: () => Navigator.pushNamed(
+              context,
+              CategoryScreen.routeName,
+              arguments: 1,
+            ),
+            icon: Icon(
+              Icons.add,
+              color: AppColorsLight.light20Color,
+              size: context.width * 0.08,
+            ),
           ),
         ),
         const SizedBox(height: 16),

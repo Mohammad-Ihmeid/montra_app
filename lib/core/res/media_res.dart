@@ -25,6 +25,8 @@ class MediaRes {
   static const attachmentIcon = '$_baseIcons/attachment_icon.png';
   static const transactionColoredIcon =
       '$_baseIcons/transaction_Colored_icon.png';
+  static const shoppingIcon = '$_baseIcons/shopping-icon.png';
+  static const recurringBillIcon = '$_baseIcons/recurring_bill_icon.png';
 
   //Images
   static const controlYourMoney = '$_baseImages/control_your_money.png';
