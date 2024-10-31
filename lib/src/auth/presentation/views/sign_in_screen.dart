@@ -59,6 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
             } else if (state is SignedIn) {
               final navigator = Navigator.of(context);
               context.userProvider.initUser(state.user as LocalUserModel);
+              context.userInfoProvider.initUserInfo(state.userInfo);
 
               final user = sl<FirebaseAuth>().currentUser!;
               await user.reload();

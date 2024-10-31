@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/res/media_res.dart';
+import 'package:montra_app/src/account/presentation/views/account_screen.dart';
 import 'package:montra_app/src/profile/presentation/widgets/logout_sheet.dart';
 import 'package:montra_app/src/profile/presentation/widgets/profile_info_card.dart';
 
@@ -24,7 +25,7 @@ class ProfileBody extends StatelessWidget {
             iconColor: AppColorsLight.primaryColor,
             label: context.langauage.account,
             color: AppColorsLight.indicatorColor,
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, AccountScreen.routeName),
           ),
           ProfileInfoCard(
             image: MediaRes.settingsIcon,

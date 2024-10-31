@@ -3,9 +3,28 @@ part of 'injection_container.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  await _initAccount();
   await _initCategory();
   await _initOnBoarding();
   await _initAuth();
+}
+
+Future<void> _initAccount() async {
+  sl
+    ..registerFactory(
+      () => AccountBloc(
+        getAccountsIcon: sl(),
+        getAccountsByUser: sl(),
+        addAccount: sl(),
+      ),
+    )
+    ..registerLazySingleton(() => GetAccountsIcon(sl()))
+    ..registerLazySingleton(() => GetAccountsByUser(sl()))
+    ..registerLazySingleton(() => AddAccount(sl()))
+    ..registerLazySingleton<AccountRepo>(() => AccountRepoImpl(sl()))
+    ..registerLazySingleton<AccountRemoteDataSource>(
+      () => AccountRemoteDataSrcImp(firestore: sl(), storage: sl(), auth: sl()),
+    );
 }
 
 Future<void> _initCategory() async {
@@ -39,6 +58,8 @@ Future<void> _initAuth() async {
         signUp: sl(),
         forgotPassword: sl(),
         updateUser: sl(),
+        getUserInfo: sl(),
+        updateUserInfo: sl(),
         sendEmailVerification: sl(),
       ),
     )
@@ -46,6 +67,8 @@ Future<void> _initAuth() async {
     ..registerLazySingleton(() => SignUp(sl()))
     ..registerLazySingleton(() => ForgotPassword(sl()))
     ..registerLazySingleton(() => UpdateUser(sl()))
+    ..registerLazySingleton(() => GetUserInfoInformation(sl()))
+    ..registerLazySingleton(() => UpdateUserInformation(sl()))
     ..registerLazySingleton(() => SendEmailVerify(sl()))
     ..registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()))
     ..registerLazySingleton<AuthRemoteDataSource>(

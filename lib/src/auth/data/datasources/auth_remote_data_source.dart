@@ -6,10 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:montra_app/core/enums/update_user.dart';
+import 'package:montra_app/core/enums/update_user_information.dart';
 import 'package:montra_app/core/errors/exceptions.dart';
 import 'package:montra_app/core/utils/constants.dart';
 import 'package:montra_app/core/utils/datasource_utils.dart';
 import 'package:montra_app/core/utils/typedef.dart';
+import 'package:montra_app/src/auth/data/model/user_information_model.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
 
 abstract class AuthRemoteDataSource {
@@ -36,6 +38,13 @@ abstract class AuthRemoteDataSource {
   Future<void> sendEmailVerification();
 
   Future<bool> checkEmailVerify();
+
+  Future<UserInformationModel> getUserInformation();
+
+  Future<void> updateUserInformation({
+    required UpdateUserInfoAction action,
+    dynamic userInfoData,
+  });
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -131,6 +140,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       await userCred.user?.updateDisplayName(fullName);
       await userCred.user?.updatePhotoURL(kDefaultAvatar);
       await _setUserData(_authClient.currentUser!, email);
+
+      final userInfoRef =
+          _cloudStoreClient.collection('users_information').doc();
+
+      final userInfoModel = const UserInformationModel.empty().copyWith(
+        userId: _authClient.currentUser!.uid,
+      );
+
+      await userInfoRef.set(userInfoModel.toMap());
     } on FirebaseAuthException catch (e) {
       throw ServerException(
         message: e.message ?? '',
@@ -233,6 +251,65 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return false;
   }
 
+  @override
+  Future<UserInformationModel> getUserInformation() async {
+    try {
+      await DatasourceUtils.authorizeUser(_authClient);
+
+      final uid = _authClient.currentUser!.uid;
+
+      final querySnapshot = await _cloudStoreClient
+          .collection('users_information')
+          .where('UID', isEqualTo: _authClient.currentUser!.uid)
+          .get();
+
+      if (querySnapshot.docs.first.exists) {
+        return UserInformationModel.fromMap(querySnapshot.docs.first.data());
+      }
+
+      throw Exception('No user found with UID $uid');
+    } on FirebaseAuthException catch (e) {
+      throw ServerException(
+        message: e.message ?? '',
+        statusCode: e.code,
+      );
+    } on ServerException {
+      rethrow;
+    } catch (e, s) {
+      debugPrintStack(stackTrace: s);
+      throw ServerException(
+        message: e.toString(),
+        statusCode: '505',
+      );
+    }
+  }
+
+  @override
+  Future<void> updateUserInformation({
+    required UpdateUserInfoAction action,
+    dynamic userInfoData,
+  }) async {
+    try {
+      await DatasourceUtils.authorizeUser(_authClient);
+
+      switch (action) {
+        case UpdateUserInfoAction.balance:
+          await _updateUserInformation({'Balance': userInfoData});
+      }
+    } on FirebaseException catch (e) {
+      throw ServerException(
+        message: e.message ?? '',
+        statusCode: e.code,
+      );
+    } catch (e, s) {
+      debugPrintStack(stackTrace: s);
+      throw ServerException(
+        message: e.toString(),
+        statusCode: '505',
+      );
+    }
+  }
+
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
     return _cloudStoreClient.collection('users').doc(uid).get();
   }
@@ -255,5 +332,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           _authClient.currentUser?.uid,
         )
         .update(data);
+  }
+
+  Future<void> _updateUserInformation(DataMap data) async {
+    await _cloudStoreClient
+        .collection('users_information')
+        .where('UID', isEqualTo: _authClient.currentUser!.uid)
+        .get()
+        .then((querySnapshot) {
+      // Check if there is a document with the specified UID
+      if (querySnapshot.docs.isNotEmpty) {
+        // Get the document ID of the first result (assuming only one result)
+        final docId = querySnapshot.docs.first.id;
+
+        // Now, update the document using its ID
+        _cloudStoreClient
+            .collection('users_information')
+            .doc(docId)
+            .update(data)
+            .then((_) {});
+      }
+    });
   }
 }

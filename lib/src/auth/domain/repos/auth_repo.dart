@@ -1,6 +1,8 @@
 import 'package:montra_app/core/enums/update_user.dart';
+import 'package:montra_app/core/enums/update_user_information.dart';
 import 'package:montra_app/core/utils/typedef.dart';
 import 'package:montra_app/src/auth/domain/enities/user.dart';
+import 'package:montra_app/src/auth/domain/enities/user_information.dart';
 
 abstract class AuthRepo {
   AuthRepo();
@@ -24,4 +26,11 @@ abstract class AuthRepo {
   });
 
   ResultFuture<void> sendEmailVerify();
+
+  ResultFuture<UserInformation> getUserInformation();
+
+  ResultFuture<void> updateUserInformation({
+    required UpdateUserInfoAction action,
+    required dynamic userData,
+  });
 }

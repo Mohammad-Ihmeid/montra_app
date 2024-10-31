@@ -51,7 +51,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case ExpenseScreen.routeName:
       return _pageBuilder(
-        (context) => const ExpenseScreen(),
+        (context) => BlocProvider(
+          create: (context) => sl<CategoryBloc>(),
+          child: const ExpenseScreen(),
+        ),
         settings: settings,
       );
     case IncomeScreen.routeName:
@@ -69,6 +72,19 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (context) => BlocProvider(
           create: (_) => sl<CategoryBloc>(),
           child: CategoryScreen(settings.arguments! as int),
+        ),
+        settings: settings,
+      );
+    case AccountScreen.routeName:
+      return _pageBuilder(
+        (context) => const AccountScreen(),
+        settings: settings,
+      );
+    case AddAccountScreen.routeName:
+      return _pageBuilder(
+        (context) => BlocProvider(
+          create: (_) => sl<AccountBloc>(),
+          child: const AddAccountScreen(),
         ),
         settings: settings,
       );

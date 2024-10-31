@@ -14,6 +14,7 @@
     "cancel" : "الغاء",
     "delete" : "حذف",
     "edit" : "تعديل",
+    "balance" : "رصيد",
 
     "onBoardingTitle": "{title, select, first{احصل على السيطرة الكاملة على أموالك} second{اعرف أين تذهب أموالك} third{التخطيط المسبق} other{}}",
     "@onBoardingTitle": {
@@ -81,5 +82,10 @@
 
     "create_Category" : "أنشاء فئة",
     "addCaegorySuccess" : "تم أضافة فئة بنجاح",
-    "create" : "أنشاء"
+    "create" : "أنشاء",
+
+    "accountBalance" : "رصيد الحساب",
+    "addNewWallet" : "إضافة محفظة جديدة",
+    "addNewAccount" : "إضافة حساب جديد",
+    "accountType" : "نوع الحساب"
 }    

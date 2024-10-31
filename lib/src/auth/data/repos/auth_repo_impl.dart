@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:montra_app/core/enums/update_user.dart';
+import 'package:montra_app/core/enums/update_user_information.dart';
 import 'package:montra_app/core/errors/exceptions.dart';
 import 'package:montra_app/core/errors/failure.dart';
 import 'package:montra_app/core/utils/typedef.dart';
 import 'package:montra_app/src/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:montra_app/src/auth/domain/enities/user.dart';
+import 'package:montra_app/src/auth/domain/enities/user_information.dart';
 import 'package:montra_app/src/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -74,6 +76,32 @@ class AuthRepoImpl implements AuthRepo {
   ResultFuture<void> sendEmailVerify() async {
     try {
       final result = await _authRemoteDataSource.sendEmailVerification();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
+  }
+
+  @override
+  ResultFuture<void> updateUserInformation({
+    required UpdateUserInfoAction action,
+    required dynamic userData,
+  }) async {
+    try {
+      final result = await _authRemoteDataSource.updateUserInformation(
+        action: action,
+        userInfoData: userData,
+      );
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
+  }
+
+  @override
+  ResultFuture<UserInformation> getUserInformation() async {
+    try {
+      final result = await _authRemoteDataSource.getUserInformation();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

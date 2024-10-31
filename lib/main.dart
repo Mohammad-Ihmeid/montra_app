@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:montra_app/core/common/app/providers/user_info_provider.dart';
 import 'package:montra_app/core/common/app/providers/user_provider.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/theme_data/theme_data_light.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => UserInfoProvider()),
         ChangeNotifierProvider(create: (_) => DashboardController()),
       ],
       child: MaterialApp(

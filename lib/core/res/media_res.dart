@@ -32,6 +32,7 @@ class MediaRes {
   static const controlYourMoney = '$_baseImages/control_your_money.png';
   static const whereYourMoney = '$_baseImages/where_your_money.png';
   static const planningAhead = '$_baseImages/planning_ahead.png';
+  static const accountBackground = '$_baseImages/account_background.png';
 
   //Lottie
   static const pageUnderConstruction = '$_baseLottie/under_construction.json';

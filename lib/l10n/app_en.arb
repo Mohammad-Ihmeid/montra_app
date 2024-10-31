@@ -14,6 +14,7 @@
     "cancel" : "Cancel",
     "delete" : "Delete",
     "edit" : "Edit",
+    "balance" : "Balance",
 
     "onBoardingTitle": "{title, select, first{Gain total control of your money} second{Know where your money goes} third{Planning ahead} other{}}",
     "@onBoardingTitle": {
@@ -82,6 +83,11 @@
 
     "create_Category" : "Create a Category",
     "addCaegorySuccess" : "Catefory added successfully",
-    "create" : "Create"
+    "create" : "Create",
+
+    "accountBalance" : "Account Balance",
+    "addNewWallet" : "Add new wallet",
+    "addNewAccount" : "Add new account",
+    "accountType" : "Account Type"
     
 }

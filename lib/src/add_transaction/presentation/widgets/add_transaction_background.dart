@@ -9,14 +9,18 @@ class AddTransactionBackground extends StatefulWidget {
     required this.valueController,
     required this.appBarTitle,
     required this.children,
+    this.bodyTitle,
     this.backgroundColor,
+    this.changeHeight,
     super.key,
   });
 
   final Color? backgroundColor;
   final String appBarTitle;
+  final String? bodyTitle;
   final TextEditingController valueController;
   final List<Widget> children;
+  final ValueNotifier<bool>? changeHeight;
 
   @override
   State<AddTransactionBackground> createState() =>
@@ -32,7 +36,18 @@ class _AddTransactionBackgroundState extends State<AddTransactionBackground>
   void initState() {
     super.initState();
 
+    if (widget.changeHeight != null) {
+      widget.changeHeight!.addListener(() => _updateBottomSheetHeight);
+    }
+
+    // Measure the height of the bottom sheet after the first frame is rendered.
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateBottomSheetHeight();
+    });
+  }
+
+  void _updateBottomSheetHeight() {
+    Future.delayed(const Duration(milliseconds: 300), () {
       final sheetHeight = bottomSheetKey.currentContext?.size?.height ?? 0;
       if (sheetHeight != bottomSheetHeight) {
         setState(() {
@@ -45,7 +60,6 @@ class _AddTransactionBackgroundState extends State<AddTransactionBackground>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       backgroundColor: widget.backgroundColor,
       appBar: AddTransactionAppBar(title: widget.appBarTitle),
       body: Padding(
@@ -59,7 +73,7 @@ class _AddTransactionBackgroundState extends State<AddTransactionBackground>
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              context.langauage.howMuch,
+              widget.bodyTitle ?? context.langauage.howMuch,
               style: const TextStyle(
                 color: AppColorsLight.light80Color,
                 fontWeight: FontWeight.w600,
@@ -79,6 +93,14 @@ class _AddTransactionBackgroundState extends State<AddTransactionBackground>
                     controller: widget.valueController,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.number,
+                    onTap: () {
+                      if (widget.changeHeight != null) {
+                        widget.changeHeight!.value = false;
+                      }
+                    },
+                    onTapOutside: (_) {
+                      FocusScope.of(context).unfocus();
+                    },
                     style: const TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.w600,
@@ -105,11 +127,22 @@ class _AddTransactionBackgroundState extends State<AddTransactionBackground>
       bottomSheet: Padding(
         key: bottomSheetKey,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: widget.children,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: widget.children,
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void didUpdateWidget(covariant AddTransactionBackground oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update the bottom sheet height if the children or content changes
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateBottomSheetHeight();
+    });
   }
 }

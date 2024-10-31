@@ -102,7 +102,8 @@ class CategoryRemoteDataSrcImp extends CategoryRemoteDataSource {
 
       final result = await storageRef.listAll();
 
-      List<String> urls = [];
+      List<String> urls;
+      urls = [];
       for (final fileRef in result.items) {
         final downloadURL = await fileRef.getDownloadURL();
         urls.add(downloadURL);
