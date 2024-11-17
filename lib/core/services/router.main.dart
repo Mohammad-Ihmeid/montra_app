@@ -4,8 +4,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case '/':
       return _pageBuilder(
-        (_) => BlocProvider(
-          create: (_) => sl<OnBoardingCubit>(),
+        (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<OnBoardingCubit>()),
+            BlocProvider(create: (_) => sl<AuthBloc>()),
+          ],
           child: const SplashScreen(),
         ),
         settings: settings,
@@ -82,8 +85,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case AddAccountScreen.routeName:
       return _pageBuilder(
-        (context) => BlocProvider(
-          create: (_) => sl<AccountBloc>(),
+        (context) => MultiBlocProvider(
+          providers: <SingleChildWidget>[
+            BlocProvider<AccountBloc>(create: (dynamic _) => sl<AccountBloc>()),
+            BlocProvider<AuthBloc>(create: (dynamic _) => sl<AuthBloc>()),
+          ],
           child: const AddAccountScreen(),
         ),
         settings: settings,

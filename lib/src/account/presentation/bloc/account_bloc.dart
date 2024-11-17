@@ -79,4 +79,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       ),
     );
   }
+
+  FutureOr<void> _getAccountHandler() {}
 }

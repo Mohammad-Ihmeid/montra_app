@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:montra_app/core/common/app/providers/user_info_provider.dart';
 import 'package:montra_app/core/common/app/providers/user_provider.dart';
 import 'package:montra_app/core/common/widgets/icon_bottom_app_bar.dart';
 import 'package:montra_app/core/res/media_res.dart';
-import 'package:montra_app/src/auth/data/model/user_model.dart';
 import 'package:montra_app/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:montra_app/src/dashboard/presentation/utils/dashboard_utils.dart';
 import 'package:montra_app/src/dashboard/presentation/widgets/dashboard_overlay.dart';
@@ -32,12 +32,19 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<LocalUserModel>(
-      stream: DashboardUtils.userDataStream,
+    return StreamBuilder<CombinedData>(
+      stream: DashboardUtils.combinedStream,
       builder: (_, snapshot) {
-        if (snapshot.hasData && snapshot.data is LocalUserModel) {
-          context.read<UserProvider>().user = snapshot.data;
+        if (snapshot.hasData && snapshot.data is CombinedData) {
+          if (snapshot.data!.userDataStream != null) {
+            context.read<UserProvider>().user = snapshot.data!.userDataStream;
+          }
+          if (snapshot.data!.userInfoStream != null) {
+            context.read<UserInfoProvider>().userInfo =
+                snapshot.data!.userInfoStream;
+          }
         }
+
         return Consumer<DashboardController>(
           builder: (_, controller, __) {
             return Scaffold(

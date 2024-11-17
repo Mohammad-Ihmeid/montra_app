@@ -47,9 +47,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<SendEmailVerifyEvent>(_sendEmailVerifyHandler);
 
-    on(_updateUserHandler);
+    on<UpdateUserEvent>(_updateUserHandler);
 
     on<UpdateUserInfoEvent>(_updateUserInfoHandler);
+
+    on<GetUserInfoEvent>(_getUserInfoHandler);
   }
 
   final SignIn _signIn;
@@ -150,6 +152,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (faliure) => emit(AuthError(faliure.errorMessage)),
       (_) => emit(const UserUpdated()),
     );
+  }
+
+  FutureOr<void> _getUserInfoHandler(
+    GetUserInfoEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    final result = await _getUserInfo();
+
+    result.fold(
+      (faliure) => emit(AuthError(faliure.errorMessage)),
+      (_) => emit(const UserUpdated()),
+    );
+  }
+
+  FutureOr<UserInformation> getUserInfo() async {
+    final result = await _getUserInfo();
+
+    if (result.isRight()) {
+      final userInfo = result.getOrElse(() => const UserInformation.empty());
+      return userInfo;
+    }
+
+    return const UserInformation.empty();
   }
 
   FutureOr<void> _sendEmailVerifyHandler(

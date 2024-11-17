@@ -7,6 +7,7 @@ import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/services/injection_container.dart';
 import 'package:montra_app/src/auth/data/model/user_model.dart';
+import 'package:montra_app/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:montra_app/src/auth/presentation/views/sign_in_screen.dart';
 import 'package:montra_app/src/dashboard/presentation/views/dashboard.dart';
 import 'package:montra_app/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
@@ -22,7 +23,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  void _goPage() {
+  Future<void> _goPage() async {
     final user = sl<FirebaseAuth>().currentUser;
     if (user != null) {
       final user = sl<FirebaseAuth>().currentUser!;
@@ -33,12 +34,22 @@ class _SplashScreenState extends State<SplashScreen> {
       );
       context.userProvider.initUser(localUser);
 
-      Navigator.pushReplacementNamed(
+      final userInfo = await context.read<AuthBloc>().getUserInfo();
+
+      if (!mounted) return;
+
+      if (context.currentUserInfo != null) {
+        context.userInfoProvider.userInfo = userInfo;
+      } else {
+        context.userInfoProvider.initUserInfo(userInfo);
+      }
+
+      await Navigator.pushReplacementNamed(
         context,
         user.emailVerified ? Dashboard.routeName : SignInScreen.routeName,
       );
     } else {
-      Navigator.pushReplacementNamed(context, SignInScreen.routeName);
+      await Navigator.pushReplacementNamed(context, SignInScreen.routeName);
     }
   }
 

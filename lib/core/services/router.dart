@@ -18,5 +18,6 @@ import 'package:montra_app/src/dashboard/presentation/views/dashboard.dart';
 import 'package:montra_app/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:montra_app/src/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:montra_app/src/on_boarding/presentation/views/splash_screen.dart';
+import 'package:provider/single_child_widget.dart';
 
 part 'router.main.dart';

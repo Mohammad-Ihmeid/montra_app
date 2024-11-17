@@ -63,7 +63,7 @@ class UpdateUserInfoEvent extends AuthEvent {
     required this.action,
     required this.userData,
   }) : assert(
-          userData is String || userData is File,
+          userData is String || userData is double,
           '[userData] must be either a String or a File, but '
           'was ${userData.runtimeType}',
         );
@@ -73,6 +73,13 @@ class UpdateUserInfoEvent extends AuthEvent {
 
   @override
   List<Object?> get props => [action, userData];
+}
+
+class GetUserInfoEvent extends AuthEvent {
+  const GetUserInfoEvent();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class SendEmailVerifyEvent extends AuthEvent {

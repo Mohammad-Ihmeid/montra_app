@@ -7,7 +7,8 @@ class UserInfoProvider extends ChangeNotifier {
   UserInformation? get userInfo => _userInfo;
 
   void initUserInfo(UserInformation? userInfo) {
-    if (_userInfo != null) _userInfo = userInfo;
+    //if (_userInfo != null)
+    _userInfo = userInfo;
   }
 
   set userInfo(UserInformation? userInfo) {

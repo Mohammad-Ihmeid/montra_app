@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:montra_app/core/common/widgets/i_field.dart';
 import 'package:montra_app/core/common/widgets/show_loading_dialog.dart';
 import 'package:montra_app/core/enums/enums.dart';
+import 'package:montra_app/core/enums/update_user_information.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
 import 'package:montra_app/core/utils/core_utils.dart';
 import 'package:montra_app/src/account/presentation/bloc/account_bloc.dart';
 import 'package:montra_app/src/account/presentation/widgets/account_type.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/add_transaction_background.dart';
+import 'package:montra_app/src/auth/presentation/bloc/auth_bloc.dart';
 
 class AddAccountScreen extends StatefulWidget {
   const AddAccountScreen({super.key});
@@ -43,16 +45,24 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AccountBloc, AccountState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.addAccountState == SaveState.loading) {
           LoadingDialog.show(context);
         } else if (state.addAccountState == SaveState.error) {
           LoadingDialog.hide(context);
           CoreUtlis.showSnackBar(context, state.errorMessage);
         } else if (state.addAccountState == SaveState.success) {
+          context.read<AuthBloc>().add(
+                UpdateUserInfoEvent(
+                  action: UpdateUserInfoAction.balance,
+                  userData: double.parse(balanceController.text) +
+                      context.currentUserInfo!.balance,
+                ),
+              );
+
           LoadingDialog.hide(context);
           Navigator.pop(context);
-          CoreUtlis.showSnackBar(context, "تم الحفظ بنجاح");
+          CoreUtlis.showSnackBar(context, 'تم الحفظ بنجاح');
         }
       },
       child: ValueListenableBuilder(

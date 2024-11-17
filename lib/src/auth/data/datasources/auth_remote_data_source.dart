@@ -260,7 +260,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final querySnapshot = await _cloudStoreClient
           .collection('users_information')
-          .where('UID', isEqualTo: _authClient.currentUser!.uid)
+          .where('UserId', isEqualTo: _authClient.currentUser!.uid)
           .get();
 
       if (querySnapshot.docs.first.exists) {
@@ -337,7 +337,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> _updateUserInformation(DataMap data) async {
     await _cloudStoreClient
         .collection('users_information')
-        .where('UID', isEqualTo: _authClient.currentUser!.uid)
+        .where('UserId', isEqualTo: _authClient.currentUser!.uid)
         .get()
         .then((querySnapshot) {
       // Check if there is a document with the specified UID
@@ -349,8 +349,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         _cloudStoreClient
             .collection('users_information')
             .doc(docId)
-            .update(data)
-            .then((_) {});
+            .update(data);
       }
     });
   }
