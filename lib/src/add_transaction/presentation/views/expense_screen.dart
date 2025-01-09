@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:montra_app/core/common/widgets/i_field.dart';
 import 'package:montra_app/core/extensions/context_extension.dart';
 import 'package:montra_app/core/res/app_color/app_color_light.dart';
-import 'package:montra_app/src/add_transaction/presentation/widgets/add_transaction_background.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/attachment_button.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/categories_menu.dart';
 import 'package:montra_app/src/add_transaction/presentation/widgets/repeat_button.dart';
+import 'package:montra_app/src/add_transaction/presentation/widgets/transaction_background.dart';
 import 'package:montra_app/src/category/domain/entities/category.dart';
 import 'package:montra_app/src/category/presentation/views/category_screen.dart';
 
@@ -45,7 +45,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           currentFocus.focusedChild!.unfocus();
         }
       },
-      child: AddTransactionBackground(
+      child: TransactionBackground(
         backgroundColor: AppColorsLight.redColor,
         valueController: expenseController,
         appBarTitle: context.langauage.expense,
